@@ -8,15 +8,15 @@ import os
 os.system('clear')
 
 def Fibo(n):
-    if n in [1, 2]:                       
+    if n in [1, 2]:
         return 1
     else:
         return Fibo(n-1) + Fibo(n-2)
 
 def NegaFibo(n):
-    if n == 1:                       
+    if n == 1:
         return 1
-    elif n == 2:                       
+    elif n == 2:
         return -1
     else:
         num1, num2 = 1, -1
