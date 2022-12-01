@@ -4,3 +4,17 @@
 # - [2, 3, 4, 5, 6] =>[12,15,16]      ([2*6, 3*5, 4*4]);
 # - [2, 3, 5, 6] => [12,15]   ( [2*6, 3*5]) 
 # В скобках пример, как это работает!!!
+
+import os
+os.system('clear')
+a = [2, 3, 4, 6, 7]
+b = []
+count = len(a)
+for i in range(len(a)):
+    while i < len(a)/2 and count > len(a)/2:
+        count -= 1
+        c = a[i] * a[count]
+        b.append(c)
+        i += 1
+print(f'Исходный список: {a}')
+print(f'Список из произведения пар элементов: {b}')

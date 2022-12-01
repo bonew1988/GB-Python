@@ -4,3 +4,9 @@
 # - 45 -> 101101
 # - 3 -> 11
 # - 2 -> 10
+
+import os
+os.system('clear')
+num = int(input('Введите число: '))
+a = bin(num)
+print(a[a.find('b')+1:])
