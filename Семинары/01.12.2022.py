@@ -10,20 +10,20 @@
 
 # import cmath
 
-# a = float(input('Input A: '))
-# b = float(input('Input B: '))
-# c = float(input('Input C: '))
+a = float(input('Input A: '))
+b = float(input('Input B: '))
+c = float(input('Input C: '))
 
-# d = (b**2) - (4*a*c)
-# if d > 0:
-#     x1 = (-b-cmath.sqrt(d))/(2*a)
-#     x2 = (-b+cmath.sqrt(d))/(2*a)
-#     print(x1, x2)
-# elif d == 0:
-#     x = -b / (2 * a)
-#     print(x)
-# else:
-#     print('Корней нет')
+d = (b**2) - (4*a*c)
+if d > 0:
+    x1 = (-b-cmath.sqrt(d))/(2*a)
+    x2 = (-b+cmath.sqrt(d))/(2*a)
+    print(x1, x2)
+elif d == 0:
+    x = -b / (2 * a)
+    print(x)
+else:
+    print('Корней нет')
 
 
 # второвй вариант решение через библиотеку
@@ -43,20 +43,20 @@
 # 7,10 -> 70
 
 
-# def nok(x, y):
-#     if x > y:
-#         max = x
-#     else:
-#         max = y
-#     while(True):
-#         if (max % x == 0) and (max % y == 0):
-#             i = max
-#             break
-#         max += 1
-#     return i
-# num1 = int(input("Enter first digit: "))
-# num2 = int(input("Enter second digit: "))
-# print(nok(num1, num2))
+def nok(x, y):
+    if x > y:
+        max = x
+    else:
+        max = y
+    while(True):
+        if (max % x == 0) and (max % y == 0):
+            i = max
+            break
+        max += 1
+    return i
+num1 = int(input("Enter first digit: "))
+num2 = int(input("Enter second digit: "))
+print(nok(num1, num2))
 
 # второй вариант решения
 
