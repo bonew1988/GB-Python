@@ -42,3 +42,22 @@ if flag == -1:
     print(f'В список элемент {user_data} второй раз не входит')
 else:
     print(f'Позиция второго вхождения в списке {index}')
+
+# -------------------------------------------------------------------------------------------------------------
+# Варианты от преподавателя
+
+    # mass = ['ssss', 'sngujn556', '44']
+# types = [str(type(i)) for i in mass]
+# if "<class 'int'>" in types or "<class 'float'>" in types:
+#     print('Yes')
+# else:
+#     print('No')
+
+# mass = ["123", "234", 123, "567"]
+# a = 123
+
+# try:
+#     mass.remove(a)
+#     print((mass.index(a))+1)
+# except ValueError:
+#     print(-1)
