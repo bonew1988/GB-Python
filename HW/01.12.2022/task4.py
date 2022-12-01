@@ -8,5 +8,4 @@
 import os
 os.system('clear')
 num = int(input('Введите число: '))
-a = bin(num)
-print(a[a.find('b')+1:])
+print(bin(num)[2::])
