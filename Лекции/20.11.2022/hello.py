@@ -1,5 +1,6 @@
-a =1
-b =3
-result = a+b
-print(result)
-print(test)
+import os
+os.system('clear')
+
+f = lambda x, y: x**y
+print(f(2, 8))
+
