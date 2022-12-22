@@ -1,35 +1,16 @@
 # import os
-# import telebot
-# import game
-
-# bot = telebot.TeleBot("5846844230:AAEvAYzZR1ms5RWuIF7Dxs7K7PP3nEcmpYw")
-
-# @bot.message_handler(commands=['start', 'help'])
-# def send_welcome(message):
-# 	bot.reply_to(message, "Howdy, how are you doing?")
-
-# bot.infinity_polling()
+# os.system('clear')
 
 import telebot
-import game
-
 bot = telebot.TeleBot("5846844230:AAEvAYzZR1ms5RWuIF7Dxs7K7PP3nEcmpYw")
 
-@bot.message_handler(content_types=['text', 'document', 'audio'])
+@bot.message_handler(commands=['start', 'help'])
+def send_welcome(message):
+	bot.reply_to(message, "Howdy, how are you doing?")
 
-def get_text_messages(message):
-    if message.text == "Привет":
-        bot.send_message(message.from_user.id, "Привет, чем я могу тебе помочь?")
-    elif message.text == "/help":
-        bot.send_message(message.from_user.id, "Напиши привет")
-    else:
-        bot.send_message(message.from_user.id, "Я тебя не понимаю. Напиши /help.")
+@bot.message_handler(func=lambda message: True)
+def echo_all(message):
+    lst = [i for i in message.text.split() if 'абв' not in i]
+    bot.reply_to(message, ' '.join(lst))
 
-
-
-
-
-
-
-
-bot.polling(none_stop=True, interval=0)
+bot.infinity_polling()
