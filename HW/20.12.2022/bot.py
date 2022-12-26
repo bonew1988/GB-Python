@@ -1,3 +1,4 @@
+# Просто так
 import os
 os.system('clear')
 
