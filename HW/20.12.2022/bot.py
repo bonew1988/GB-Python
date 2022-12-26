@@ -1,16 +1,64 @@
-# import os
-# os.system('clear')
+import os
+os.system('clear')
 
 import telebot
+from random import randint
+from random import choice
+
 bot = telebot.TeleBot("5846844230:AAEvAYzZR1ms5RWuIF7Dxs7K7PP3nEcmpYw")
+candys = dict()
+enable_game = dict()
+turn = dict()
 
-@bot.message_handler(commands=['start', 'help'])
+def handle_game_proc(message):
+    global enable_game
+    try:
+        if enable_game[message.chat.id] and 1 <= int(message.text) <= 28:
+            return True
+        else:
+            return False
+    except KeyError:
+        enable_game[message.chat.id] = False
+        if enable_game[message.chat.id] and 1 <= int(message.text) <= 28:
+            return True
+        else:
+            return False
+
+@bot.message_handler(commands=['game'])
 def send_welcome(message):
-	bot.reply_to(message, "Howdy, how are you doing?")
+    global turn, candys, enable_game
+    bot.reply_to(message, 'Поехали!')
+    candys[message.chat.id] = 117
+    turn[message.chat.id] = choice(['Bot', 'User'])
+    bot.send_message(message.chat.id, f'Начинает {turn[message.chat.id]}')
+    enable_game[message.chat.id] = True
+    if turn [message.chat.id] == 'Bot':
+        take = randint(1, candys[message.chat.id] % 29)
+        candys[message.chat.id] -= take
+        bot.send_message(message.chat.id, f'Бот взял {take}')
+        bot.send_message(message.chat.id, f'Осталось {candys[message.chat.id]}')
+        turn[message.chat.id] = 'User'
 
-@bot.message_handler(func=lambda message: True)
-def echo_all(message):
-    lst = [i for i in message.text.split() if 'абв' not in i]
-    bot.reply_to(message, ' '.join(lst))
+@bot.message_handler(func=handle_game_proc)
+def game_process(message):
+    global candys, turn, enable_game
+    if turn[message.chat.id] == 'User':
+        if candys[message.chat.id] > 28:
+            candys[message.chat.id] -= int(message.text)
+            bot.send_message(message.chat.id, f'Осталось {candys[message.chat.id]}')
+            if candys [message.chat.id] > 28:
+                take = randint(1, candys[message.chat.id] % 29)
+                candys[message.chat.id] -= take
+                bot.send_message(message.chat.id, f'Бот взял {take}')
+                bot.send_message(message.chat.id, f'Осталось {candys[message.chat.id]}')
+                if candys[message.chat.id] <= 28:
+                    bot.send_message(message.chat.id, 'User выиграл!')
+                    enable_game[message.chat.id] = False
+            else:
+                bot.send_message(message.chat.id, 'Bot выиграл!')
+                enable_game[message.chat.id] = False
+        else:
+            bot.send_message(message.chat.id, 'Bot выиграл!')
+            enable_game[message.chat.id] = False
 
 bot.infinity_polling()
